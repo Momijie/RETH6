@@ -1,0 +1,7 @@
+A reverse engineering project in the hopes to better understand Touhou6
+
+WIN_SDK "10.0.22621.0"
+MSVC    "14.34.31933"
+Clang   "15.0.2"
+
+If the executable doesn't beep on open, it's probably not working. :(

@@ -1,0 +1,11 @@
+# https://clang.llvm.org/docs/ClangFormatStyleOptions.html
+BasedOnStyle: Google
+IndentWidth: 4
+
+DerivePointerAlignment: false
+PointerAlignment: Left
+#AlignConsecutiveAssignments: Consecutive
+ColumnLimit: 80
+
+BinPackParameters: false
+BinPackArguments: false
