@@ -1,4 +1,5 @@
 .vscode/*
+.ghidra/*
 build/*
 game/*
 etc/*

@@ -49,18 +49,25 @@ include_directories(SYSTEM "${WIN_SDK_INCLUDE_DIRECTORY}/cppwinrt")
 link_directories("${WIN_SDK_LIB_DIRECTORY}/ucrt/x64")
 link_directories("${WIN_SDK_LIB_DIRECTORY}/um/x64")
 
-# Build the Dll.
-project(RETH6-DLL VERSION 0.1.0)
-add_library(RETH6-DLL SHARED Reth6-DLL.cpp )
-set_target_properties(RETH6-DLL PROPERTIES OUTPUT_NAME "RETH6")
-set_target_properties(RETH6-DLL PROPERTIES COMPILE_FLAGS "-m32" LINK_FLAGS "-m32")
-
-# Build the Injector.
 get_filename_component(PROJECT_ROOT ${CMAKE_CURRENT_SOURCE_DIR}/.. ABSOLUTE)
 file(GLOB RETH6-Injector_SRC
     "Config.cpp"
     "Reth6-Injector.cpp"
 )
+
+file(GLOB RETH6-DLL_SRC
+    "Config.cpp"
+    "DLL-Helper.cpp"
+    "Reth6-DLL.cpp"
+)
+# Build the Dll.
+project(RETH6-DLL VERSION 0.1.0)
+add_library(RETH6-DLL SHARED ${RETH6-DLL_SRC})
+target_include_directories(RETH6-DLL PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/include")
+set_target_properties(RETH6-DLL PROPERTIES OUTPUT_NAME "RETH6")
+set_target_properties(RETH6-DLL PROPERTIES COMPILE_FLAGS "-m32" LINK_FLAGS "-m32")
+
+# Build the Injector.
 project(RETH6-Injector VERSION 0.1.0)
 add_executable(RETH6-Injector ${RETH6-Injector_SRC})
 target_include_directories(RETH6-Injector PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/include")
